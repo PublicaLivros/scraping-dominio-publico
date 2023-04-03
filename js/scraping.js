@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
-const dataOutput = path.resolve(__dirname, '../json/raw_data.json');
+const savedirpath = path.resolve(__dirname, '../json/');
 const url = "http://www.dominiopublico.gov.br/pesquisa/ResultadoPesquisaObraForm.do?first=3000&skip=0&ds_titulo=&co_autor=&no_autor=&co_categoria=2&pagina=1&select_action=Submit&co_midia=2&co_obra=&co_idioma=1&colunaOrdenar=NU_PAGE_HITS&ordem=asc";
 let globalData;
 
@@ -67,10 +67,12 @@ let globalData;
       });
     globalData = result;
     let json = JSON.stringify(globalData, null, 1);
-  
-    fs.writeFile(dataOutput, json, (err) => {
+
+    if (!fs.existsSync(savedirpath)) { fs.mkdirSync(savedirpath); }
+
+    fs.writeFile(`${savedirpath}/raw_data.json`, json, (err) => {
       if(err) throw err;
-      console.log('saved!');
+      console.log(`saved: ${savedirpath}raw_data.json`);
     });
     
     await browser.close();
