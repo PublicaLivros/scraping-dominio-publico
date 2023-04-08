@@ -44,15 +44,13 @@ let globalData;
           //Pega o tamanho do arquivo.
           let fileSize = actualLine?.childNodes[13]?.innerText ?? "";
 
-
-
           let verifyProps = [bookTitle, bookLink, bookFont, authorName, fileSize, fileType];
 
           if (verifyProps.every(value => { return value != ""; })) {
             data.push(
               {
                 "cct_status": "publish",
-                'link': bookLink,
+                "link": bookLink,
                 "titulo": bookTitle,
                 "autor": authorName,
                 "categoria": "literatura",
