@@ -2,3 +2,5 @@ node_modules/*
 images/*
 data.json
 .env
+python/modules/__pycache__/*
+python/booklibrary/*
