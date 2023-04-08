@@ -3,7 +3,7 @@ import json
 import os
 from modules.booksparser import *
 
-with open("../json/raw_data.json") as dataRaw:
+with open("../json/raw_data.json", encoding="utf8") as dataRaw:
     data = json.load(dataRaw)
 
 def verifyDirsExist():
