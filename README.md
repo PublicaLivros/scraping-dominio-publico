@@ -1,2 +1,3 @@
-# Scraping-dominio-publico
-Faz um scraping no site do governo de [domínio publico do governo](https://dominiopublico.gov.br/).
+# Scraping Dominio Publico (Gov Brasil)
+
+Ferramenas para fazer scraping de dados e arquivos do [domínio publico do governo](http://www.dominiopublico.gov.br/).
