@@ -13,12 +13,16 @@ def requestPdf(url, name, id):
     url = f'{url}&co_midia=2'
     response = requests.get(url)
     name = fileNameNormalize(name)
-    try:
-        with open(f'./booklibrary/{name}_{id}.pdf', 'wb') as f:
-            f.write(response.content)
-        print(f'\033[1;32mBook saved:\033[1;m {name}. \33[1;32mID:\33[1;m {id}')
-    except:
-        print(f'Unable to save book: {name}, ID: {id}')
+
+    if (response.status_code == 200):
+        try:
+            with open(f'./booklibrary/{name}_{id}.pdf', 'wb') as f:
+                f.write(response.content)
+                print(f'\033[1;32mBook saved:\033[1;m {name}. \33[1;32mID:\33[1;m {id}')
+        except:
+            print(f'\033[1;31mUnable to save book:\033[1;m {name}, ID: {id}')
+    else:
+        print(f"\033[1;31mArquivo não encontrado no servidor.\033[1;m - Livro: {name}")
 
 def tryDownload(index):
     try:
