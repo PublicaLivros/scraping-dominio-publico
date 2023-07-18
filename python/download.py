@@ -3,7 +3,9 @@ import json
 import os
 from modules.booksparser import *
 
-with open("../json/raw_data.json", encoding="utf8") as dataRaw:
+json_file_absolute_path = os.path.realpath("json/raw_data.json")
+
+with open(json_file_absolute_path, encoding="utf8") as dataRaw:
     data = json.load(dataRaw)
 
 def verifyDirsExist():
@@ -34,9 +36,4 @@ def init():
     verifyDirsExist()
     for i in range(0, len(data)): tryDownload(i)
 
-
 init()
-
-
-
-
