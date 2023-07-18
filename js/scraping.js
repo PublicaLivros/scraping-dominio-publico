@@ -25,23 +25,16 @@ let globalData;
     
           let actualLine = table.children[line];
           
-          //Pega o título do livro.
           let bookTitle = actualLine?.childNodes[5]?.innerText ?? "";
-          
-          //Pega o link para a página do arquivo.
-          
+                    
           let bookLink = actualLine?.childNodes[5]?.children[0]?.href ?? "";
           
-          //Pega o nome do autor.
           let authorName = actualLine?.childNodes[7]?.innerText ?? "";
       
-          //Pega o nome da fonte.
           let bookFont = actualLine?.childNodes[9]?.innerText ?? "";
       
-          //Pega o tipo de arquivo.
           let fileType = actualLine?.childNodes[11]?.innerText ?? "";
       
-          //Pega o tamanho do arquivo.
           let fileSize = actualLine?.childNodes[13]?.innerText ?? "";
 
           let verifyProps = [bookTitle, bookLink, bookFont, authorName, fileSize, fileType];
