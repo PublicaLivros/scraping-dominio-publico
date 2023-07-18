@@ -5,3 +5,4 @@ data.json
 python/modules/__pycache__/*
 python/booklibrary/*
 json/*
+booklibrary/
