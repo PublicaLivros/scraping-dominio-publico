@@ -8,8 +8,11 @@ def fileNameNormalize(inputString):
     return bookNormalizeText
 
 # Substitui o link do livro para o link de download do arquivo.
-def replaceLinkToDownload(url):
-    url = url.replace("DetalheObraForm.do", "DetalheObraDownload.do", 1)
+def replaceLinkToDownload(url, download_again):
+    if (not download_again):
+        url = url.replace("DetalheObraForm.do", "DetalheObraDownload.do", 1)
+        return url
+    
+    url = url.replace("http://www.dominiopublico.gov.br/download/texto/", "http://bibliotecacomum.com.br/bc-texto/obras/")
     return url
-
 
