@@ -42,7 +42,6 @@ let globalData;
           if (verifyProps.every(value => { return value != ""; })) {
             data.push(
               {
-                "cct_status": "publish",
                 "link": bookLink,
                 "titulo": bookTitle,
                 "autor": authorName,
@@ -50,7 +49,6 @@ let globalData;
                 "fonte": bookFont,
                 "tipo_de_arquivo": fileType,
                 "tamanho_do_arquivo": fileSize,
-                "capa": "https://aldair.aztecweb.net/wp-content/uploads/2022/11/cover_fallback.png"
               });
           };
          
@@ -71,4 +69,3 @@ let globalData;
     await browser.close();
 
   })();
-
