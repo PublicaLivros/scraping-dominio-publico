@@ -27,6 +27,7 @@ def requestPdf(url, name, id, download_again):
 
     if (response.status_code == 404 and download_again == False):
         requestPdf(replaceLinkToDownload(response.url, True), name, id, True)
+        return
     
     print(f"\033[1;31mArquivo não encontrado no servidor.\033[1;m - Livro: {name}")
 
