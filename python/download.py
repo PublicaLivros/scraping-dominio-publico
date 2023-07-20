@@ -11,35 +11,28 @@ with open(json_file_absolute_path, encoding="utf8") as dataRaw:
 def verifyDirsExist():
     if not os.path.exists('booklibrary'): os.makedirs('booklibrary')
 
-def requestPdf(url, name, id):
+def requestPdf(url, name, id, download_again):
     response = requests.get(url)
     name = fileNameNormalize(name)
-    download_again = False
-
-    if (not response.status_code == 200 or not response.status_code == 404):
-        # TODO review this early return logic
-        print(f"\033[1;31mArquivo não encontrado no servidor.\033[1;m - Livro: {name}")
 
     if (response.status_code == 200):
         try:
             with open(f'./booklibrary/{name}_{id}.pdf', 'wb') as f:
                 f.write(response.content)
-                print(f'\033[1;32mBook saved:\033[1;m {name}. \33[1;32mID:\33[1;m {id}')
-        except:
-            print(f'\033[1;31mUnable to save book:\033[1;m {name}, ID: {id}')
-    
-    if (response.status_code == 404 and download_again == False):
-        try:
-            download_again = True
-            requestPdf(replaceLinkToDownload(response.url, True), name, id)
-            print(f'\033[1;32mBook saved:\033[1;m {name}. \33[1;32mID:\33[1;m {id} {response.url}')
-            
+                print(f'\033[1;32mBook saved:\033[1;m {name}. \33[1;32mID:\33[1;m {id}')            
         except:
             print(f'\033[1;31mUnable to save book:\033[1;m {name}, ID: {id}')
 
+        return 
+
+    if (response.status_code == 404 and download_again == False):
+        requestPdf(replaceLinkToDownload(response.url, True), name, id, True)
+    
+    print(f"\033[1;31mArquivo não encontrado no servidor.\033[1;m - Livro: {name}")
+
 def tryDownload(index):
     try:
-        requestPdf(replaceLinkToDownload(data[index]["link"] + "&co_midia=2", False), data[index]["titulo"], index)
+        requestPdf(replaceLinkToDownload(data[index]["link"] + "&co_midia=2", False), data[index]["titulo"], index, False)
     except:
         print(f'Unable do download book: {data[index]["titulo"]}')
 
