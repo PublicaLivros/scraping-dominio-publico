@@ -14,12 +14,16 @@ function execute() {
         fi
     elif [[ executecommand -eq 3 ]]; then
         echo "Removing raw_data.json..."
-        if [[ -e "./json/raw_data.json" ]]; then rm ./json/raw_data.json;
+        if [[ -e "./json/raw_data.json" ]]; then 
+            rm ./json/raw_data.json;
+            if [[ $? == 0 ]]; then echo "raw_data.json removed successfully!"; fi
         else echo "Scraping data doesn't exist";
         fi
     elif [[ executecommand -eq 4 ]]; then
         echo "Removing all books from booklibrary..."
-        if [[ -d "./booklibrary" ]]; then rm ./booklibrary/*;
+        if [[ -d "./booklibrary" ]]; then 
+            rm ./booklibrary/*;
+            if [[ $? == 0 ]]; then echo "Books removed successfully!"; fi
         else echo "There are no books saved here.";
         fi
     else
@@ -28,7 +32,8 @@ function execute() {
 }
 
 function showMenu() {
-    echo -e "SCRAPPING - PUBLIC DOMAIN: 
+    echo -e "SCRAPING - PUBLIC DOMAIN: 
+==============================    
 1) NodeJS scraping for raw_data.
 2) Download books from raw_data scraping.
 3) Remove raw_data scraping.
